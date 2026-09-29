@@ -16,7 +16,6 @@ const LINKS = {
   hotmartNow: 'https://hotmart.com/pt-br/marketplace/produtos/n-o-w-natureza-da-sabedoria/O67919205Y',
   amazon: 'https://www.amazon.com.br/W-Natureza-Sabedoria-Everton-Bottega/dp/8594551274/ref=sr_1_1?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=NOW+-+natureza+da+sabedoria&qid=1636569351&sr=8-1',
   clinica: 'https://www.espacobottega.com/',
-  transformacao: 'https://treinamentobottega.com.br/transformacao/',
   yt: 'https://www.youtube.com/@Evertonbottega',
   yt2: 'https://youtube.com/@nutricionistaetreinadorbottega',
   ig: 'https://www.instagram.com/evertonbottega/',
@@ -54,7 +53,7 @@ const posts = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/posts.json'), 
 
 /* ---------- layout ---------- */
 const NAV = [['index.html', 'Home'], ['everton.html', 'Éverton'], ['produtos.html', 'Produtos'], ['blog/index.html', 'Blog'], ['contato.html', 'Contato']];
-function layout({ file, title, desc, body, base = '', active = '', og = 'assets/img/hero.jpg', ld = '' }) {
+function layout({ file, title, desc, body, base = '', active = '', og = 'assets/fotos/hero-desktop.jpg', ld = '' }) {
   const links = NAV.map(([h, l]) => `<a href="${base}${h}"${active === h ? ' aria-current="page"' : ''}>${l}</a>`).join('') +
     `<a href="${LINKS.clinica}" target="_blank" rel="noopener">Clínica Bottega</a>`;
   const mlinks = NAV.map(([h, l]) => `<a class="m" href="${base}${h}">${l}</a>`).join('') +
@@ -167,6 +166,7 @@ const locHtml = (base = '') => `<section class="sec sec-cream" id="local" style=
 </section>`;
 
 const finalCta = (h = 'Comece a sua transformação <em>hoje</em>', p = 'Conte o seu objetivo pelo WhatsApp e receba a orientação de quem transforma corpo e mente há mais de 15 anos.') => `<section class="sec sec-black final">
+  <div class="bgimg" data-parallax=".08" style="background-image:url('assets/fotos/bg-barra.jpg')" aria-hidden="true"></div>
   <div class="hero-bg" aria-hidden="true"><span class="orb o1"></span><span class="orb o2"></span></div>
   <div class="wrap">
     <h2 data-split>${h}</h2>
@@ -176,7 +176,7 @@ const finalCta = (h = 'Comece a sua transformação <em>hoje</em>', p = 'Conte o
 </section>`;
 
 const PRODUCTS = [
-  { id: 'maquina', tag: 'Programa · Método ATP3', title: 'Máquina de Definição', img: 'assets/img/gym.jpg', pos: 'right center',
+  { id: 'maquina', tag: 'Programa · Método ATP3', title: 'Máquina de Definição', img: 'assets/fotos/treino.jpg', pos: 'center 30%',
     txt: 'Perca até 8kg de gordura e aumente a sua massa muscular em 90 dias. O Método ATP3 em 3 fases, com encontros ao vivo todo mês, avaliação das suas medidas e plano específico para você.',
     long: 'O Método ATP3 conduz você em 3 fases (Queima Máxima, Força Bruta e Definição Total) para perder gordura, ganhar definição e criar a base que impede o efeito sanfona. Inclui encontros ao vivo todo mês, avaliação personalizada das suas medidas e evolução e um plano específico para você.',
     btns: [['Conhecer o método', 'maquina-de-definicao.html', 'gold', true], ['Comprar', LINKS.kiwifyHome, 'ghost']] },
@@ -203,7 +203,13 @@ function home() {
   const latest = posts.slice(0, 3).map((p) => postCard(p, '', false)).join('');
   const body = `
 <section class="hero">
-  <div class="hero-bg" aria-hidden="true"><span class="orb o1"></span><span class="orb o2"></span><div class="grid-lines"></div></div>
+  <div class="hero-img" data-parallax=".12" aria-hidden="true">
+    <picture>
+      <source media="(max-width: 767px)" srcset="assets/fotos/hero-mobile.jpg">
+      <img src="assets/fotos/hero-desktop.jpg" alt="" width="1672" height="941" fetchpriority="high">
+    </picture>
+  </div>
+  <div class="hero-bg" aria-hidden="true"><span class="orb o1"></span><span class="orb o2"></span></div>
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <div class="badge" data-r="blur"><span class="st">★★★★★</span><span>5.0 no Google (144+ avaliações)</span><span class="tg">Porto Alegre &amp; On-line</span></div>
@@ -222,10 +228,9 @@ function home() {
         <div><b data-count="5.0">5,0</b><span>Nota no Google</span></div>
       </div>
     </div>
-    <div class="hero-photo" data-parallax=".05">
-      <div class="frame" data-r="mask"><img src="assets/img/hero.jpg" alt="Éverton Bottega, treinador e nutricionista" width="1034" height="1280" fetchpriority="high"></div>
-      <div class="chip c1" data-r data-d="1200"><i></i>Presencial &amp; On-line</div>
-      <div class="chip c2" data-r data-d="1400">Nutrição + Treino</div>
+    <div class="hero-chips" aria-hidden="true">
+      <div class="chip" data-r data-d="1300"><i></i>Presencial &amp; On-line</div>
+      <div class="chip" data-r data-d="1500">Nutrição + Treino</div>
     </div>
   </div>
   <div class="cue" aria-hidden="true">Role</div>
@@ -273,7 +278,7 @@ function home() {
     </div>
     <div class="story-grid">
       <div class="story-media">
-        <img src="assets/img/hero.jpg" alt="" loading="lazy"><img src="assets/img/portrait.jpg" alt="" loading="lazy"><img src="assets/img/gym.jpg" alt="" loading="lazy" style="object-position:70% top">
+        <img src="assets/fotos/sorriso.jpg" alt="" loading="lazy" width="884" height="1280"><img src="assets/fotos/preto.jpg" alt="" loading="lazy" width="1034" height="1280"><img src="assets/fotos/treino.jpg" alt="" loading="lazy" width="866" height="1280">
         <span class="no">01</span>
       </div>
       <div class="story-steps">
@@ -286,6 +291,7 @@ function home() {
 </section>
 
 <section class="sec sec-black manifesto">
+  <div class="bgimg" data-parallax=".1" style="background-image:url('assets/fotos/bg-preto.jpg')" aria-hidden="true"></div>
   <div class="wrap">
     <p class="scrub" data-scrub data-gold="transformou,transformado,faz">“Ninguém transforma ninguém, sem antes ter se transformado. Não importa o que você sabe, mas sim o que você faz com o que você sabe.”</p>
     <div class="attr" data-r>Éverton Bottega · A milhão, igual a uma máquina de energia!</div>
@@ -294,7 +300,7 @@ function home() {
 
 <section class="sec sec-dark" id="sobre">
   <div class="wrap about">
-    <div class="ph"><div class="frame" data-r="mask"><img src="assets/img/everton.jpg" alt="Éverton Bottega, treinador e nutricionista" loading="lazy" width="2500" height="2500"></div></div>
+    <div class="ph"><div class="frame" data-r="mask"><img src="assets/fotos/terno.jpg" alt="Éverton Bottega, treinador e nutricionista" loading="lazy" width="860" height="1280"></div></div>
     <div class="txt" data-stagger="110">
       <span class="eyebrow">Liderança &amp; autoridade</span>
       <h2>Treinador e Nutricionista <em>Éverton Bottega</em></h2>
@@ -348,7 +354,7 @@ function home() {
 
 ${finalCta()}
 ${locHtml()}`;
-  const person = ({ '@context': 'https://schema.org', '@type': 'Person', name: 'Éverton Bottega', jobTitle: 'Treinador e Nutricionista', url: SITE, image: `${SITE}/assets/img/hero.jpg`, sameAs: [LINKS.ig, LINKS.fb, LINKS.yt], address: { '@type': 'PostalAddress', streetAddress: 'R. Schiller, 40 - Rio Branco', addressLocality: 'Porto Alegre', addressRegion: 'RS', postalCode: '90430-150', addressCountry: 'BR' } });
+  const person = ({ '@context': 'https://schema.org', '@type': 'Person', name: 'Éverton Bottega', jobTitle: 'Treinador e Nutricionista', url: SITE, image: `${SITE}/assets/fotos/hero-desktop.jpg`, sameAs: [LINKS.ig, LINKS.fb, LINKS.yt], address: { '@type': 'PostalAddress', streetAddress: 'R. Schiller, 40 - Rio Branco', addressLocality: 'Porto Alegre', addressRegion: 'RS', postalCode: '90430-150', addressCountry: 'BR' } });
   const ld = JSON.stringify([person, faqLd]);
   return layout({ file: 'index.html', title: 'Éverton Bottega | Treinador e Nutricionista Esportivo em Porto Alegre', desc: 'Acompanhamento nutricional e treinamento físico com Éverton Bottega. Emagrecimento, hipertrofia, performance esportiva, qualidade de vida e longevidade. Presencial em Porto Alegre e on-line.', body, active: 'index.html', ld: `[${ld},${faqLd}]`.replace(/^\[|\]$/g, '') && ld });
 }
@@ -362,7 +368,7 @@ function everton() {
 </section>
 <section class="sec sec-dark">
   <div class="wrap about">
-    <div class="ph"><div class="frame" data-r="mask"><img src="assets/img/portrait.jpg" alt="Éverton Bottega" width="720" height="1080"></div></div>
+    <div class="ph"><div class="frame" data-r="mask"><img src="assets/fotos/sorriso.jpg" alt="Éverton Bottega" width="884" height="1280"></div></div>
     <div class="txt" data-stagger="110">
       <span class="eyebrow">Trajetória</span>
       <p class="big">O Éverton Bottega atua há mais de 15 anos contribuindo com a transformação de centenas de pessoas, ele é referência nacional na área da saúde. Foi treinado pelo maior coach do mundo, Anthony Robbins, em Las Vegas e Londres, e pelo maior mentor de vida e finanças, T. Harv Eker, autor do livro “Os Segredos da Mente Milionária”.</p>
@@ -373,6 +379,7 @@ function everton() {
   </div>
 </section>
 <section class="sec sec-black manifesto">
+  <div class="bgimg" data-parallax=".1" style="background-image:url('assets/fotos/bg-preto.jpg')" aria-hidden="true"></div>
   <div class="wrap">
     <p class="scrub" data-scrub data-gold="transformou,transformado,faz">“Ninguém transforma ninguém, sem antes ter se transformado. Não importa o que você sabe, mas sim o que você faz com o que você sabe.”</p>
     <div class="attr" data-r>Os dois lemas do Éverton na profissão</div>
@@ -392,9 +399,17 @@ function everton() {
     </div>
   </div>
 </section>
+<section class="sec sec-dark">
+  <div class="wrap">
+    <div class="head"><span class="eyebrow dk" data-r>Galeria</span><h2 data-split>Disciplina, <em>presença</em> e resultado</h2></div>
+  </div>
+  <div class="gal" data-stagger="120">
+    ${[['treino','Treino'],['descanso','Foco'],['preto','Força'],['chuva','Mentalidade'],['barra','Constância'],['terno','Autoridade']].map(([f, t]) => `<figure class="gi"><img src="assets/fotos/${f}.jpg" alt="Éverton Bottega — ${t}" loading="lazy" width="866" height="1280"><figcaption>${t}</figcaption></figure>`).join('')}
+  </div>
+</section>
 ${finalCta('Quer treinar e comer com <em>estratégia</em>?')}
 ${locHtml()}`;
-  return layout({ file: 'everton.html', title: 'Éverton Bottega | Treinador e Nutricionista', desc: 'Conheça a trajetória do Éverton Bottega: mais de 15 anos de experiência, duas graduações, treinado por Anthony Robbins e multicampeão de fisiculturismo.', body, active: 'everton.html', og: 'assets/img/portrait.jpg' });
+  return layout({ file: 'everton.html', title: 'Éverton Bottega | Treinador e Nutricionista', desc: 'Conheça a trajetória do Éverton Bottega: mais de 15 anos de experiência, duas graduações, treinado por Anthony Robbins e multicampeão de fisiculturismo.', body, active: 'everton.html', og: 'assets/fotos/sorriso.jpg' });
 }
 
 /* ---------- PRODUTOS ---------- */
@@ -413,7 +428,7 @@ function produtos() {
 </section>
 <section class="sec"><div class="wrap">${rows}</div></section>
 ${finalCta('Não sabe por onde <em>começar</em>?', 'Fale com a equipe no WhatsApp e descubra o melhor caminho para o seu objetivo.')}`;
-  return layout({ file: 'produtos.html', title: 'Produtos | Éverton Bottega', desc: 'Máquina de Definição (Método ATP3), Nutri Sem Limites, Seja a sua própria transformação e o livro N.O.W. – Natureza da Sabedoria.', body, active: 'produtos.html', og: 'assets/img/gym.jpg' });
+  return layout({ file: 'produtos.html', title: 'Produtos | Éverton Bottega', desc: 'Máquina de Definição (Método ATP3), Nutri Sem Limites, Seja a sua própria transformação e o livro N.O.W. – Natureza da Sabedoria.', body, active: 'produtos.html', og: 'assets/fotos/treino.jpg' });
 }
 
 /* ---------- MÁQUINA DE DEFINIÇÃO (VSL) ---------- */
@@ -540,7 +555,7 @@ function maquina() {
 </section>
 <script src="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" async></script>
 <script>var s=document.createElement("script");s.src="https://scripts.converteai.net/89ae9049-d379-42aa-a047-ceae609ed4c9/players/690e7b189027e3855c00a2d7/v4/player.js";s.async=true;document.head.appendChild(s);</script>`;
-  return layout({ file: 'maquina-de-definicao.html', title: 'Máquina de Definição · Método ATP3 | Éverton Bottega', desc: 'O Método ATP3 em 3 fases para perder gordura e ganhar definição em 90 dias, com encontros ao vivo todo mês, avaliação de medidas e plano específico.', body, active: 'produtos.html', og: 'assets/img/gym.jpg' });
+  return layout({ file: 'maquina-de-definicao.html', title: 'Máquina de Definição · Método ATP3 | Éverton Bottega', desc: 'O Método ATP3 em 3 fases para perder gordura e ganhar definição em 90 dias, com encontros ao vivo todo mês, avaliação de medidas e plano específico.', body, active: 'produtos.html', og: 'assets/fotos/treino.jpg' });
 }
 
 /* ---------- CONTATO ---------- */

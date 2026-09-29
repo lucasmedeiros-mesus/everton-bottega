@@ -240,6 +240,24 @@ function home() {
   ${[0, 1].map(() => '<span>Emagrecimento</span><span>Hipertrofia</span><span>Performance esportiva</span><span>Qualidade de vida</span><span>Longevidade</span><span>Nutrição</span><span>Treino</span><span>Mentalidade</span>').join('')}
 </div></div>
 
+<section class="sec sec-dark" id="produtos">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow dk" data-r>Cursos, livros e programas</span>
+      <h2 data-split>Leve o método do Éverton <em>onde você estiver</em></h2>
+      <p data-r>Programa, curso, guia e livro para quem quer aprender e evoluir no seu ritmo.</p>
+    </div>
+    <div class="prods" data-stagger="120">
+      ${PRODUCTS.map((p) => `<div class="prod tilt"><span class="shine"></span><div class="im"><img src="${p.img}" alt="${esc(p.title)}" loading="lazy" style="object-position:${p.pos}"></div><div class="bd"><span class="ptag">${p.tag}</span><h3>${p.title}</h3><p>${p.txt}</p><div class="acts">${p.btns.map((b) => pbtn(b)).join('')}</div></div></div>`).join('')}
+    </div>
+    <div class="center" style="margin-top:24px" data-r><a class="btn btn-ghost" href="produtos.html">Ver todos os produtos</a></div>
+    <div class="yt" data-r="zoom">
+      <img src="assets/img/youtube.jpg" alt="Canal do Éverton Bottega no YouTube" loading="lazy">
+      <div class="ov"><h3>Acompanhe o canal do Éverton no YouTube</h3><a class="btn btn-red mag" target="_blank" rel="noopener" href="${LINKS.yt}">▶ Acesse o canal do YouTube</a></div>
+    </div>
+  </div>
+</section>
+
 <section class="sec" id="atendimentos">
   <div class="wrap">
     <div class="head">
@@ -311,24 +329,6 @@ function home() {
       </div>
       <p>Formado pelo Instituto de Formação de Treinadores Comportamentais (IFT), pelo Instituto Brasileiro de Coach (IBC) e pelo Instituto Geronimo Theml (IGT), com formação em Programação Neurolinguística (PNL). Ex-atleta multicampeão de fisiculturismo.</p>
       <a class="btn btn-gold mag" href="everton.html">Conheça a história →</a>
-    </div>
-  </div>
-</section>
-
-<section class="sec sec-dark" id="produtos" style="padding-top:0">
-  <div class="wrap">
-    <div class="head">
-      <span class="eyebrow dk" data-r>Cursos, livros e programas</span>
-      <h2 data-split>Leve o método do Éverton <em>onde você estiver</em></h2>
-      <p data-r>Programa, curso, guia e livro para quem quer aprender e evoluir no seu ritmo.</p>
-    </div>
-    <div class="prods" data-stagger="120">
-      ${PRODUCTS.map((p) => `<div class="prod tilt"><span class="shine"></span><div class="im"><img src="${p.img}" alt="${esc(p.title)}" loading="lazy" style="object-position:${p.pos}"></div><div class="bd"><span class="ptag">${p.tag}</span><h3>${p.title}</h3><p>${p.txt}</p><div class="acts">${p.btns.map((b) => pbtn(b)).join('')}</div></div></div>`).join('')}
-    </div>
-    <div class="center" style="margin-top:24px" data-r><a class="btn btn-ghost" href="produtos.html">Ver todos os produtos</a></div>
-    <div class="yt" data-r="zoom">
-      <img src="assets/img/youtube.jpg" alt="Canal do Éverton Bottega no YouTube" loading="lazy">
-      <div class="ov"><h3>Acompanhe o canal do Éverton no YouTube</h3><a class="btn btn-red mag" target="_blank" rel="noopener" href="${LINKS.yt}">▶ Acesse o canal do YouTube</a></div>
     </div>
   </div>
 </section>

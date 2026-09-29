@@ -152,9 +152,6 @@
     bar && bar.style.setProperty('--p', max > 0 ? y / max : 0);
     if (head) {
       head.classList.toggle('scrolled', y > 40);
-      const down = y > lastY && y > 300 && !document.body.classList.contains('menu-open');
-      head.classList.toggle('hide', down && y - lastY > 4);
-      if (y < lastY) head.classList.remove('hide');
     }
     lastY = y;
     if (!reduce) {

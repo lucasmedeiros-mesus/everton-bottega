@@ -414,3 +414,19 @@ body.leaving{opacity:0;transition:opacity .3s}
 .gi:hover img{transform:scale(1.08)}
 .gi figcaption{position:absolute;left:0;right:0;bottom:0;padding:40px 18px 16px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:13px;background:linear-gradient(to top,rgba(2,6,23,.9),transparent);color:var(--gold-300)}
 @media(min-width:1000px){.gal{justify-content:center}.gi{width:calc((1200px - 5*16px)/6)}}
+
+/* ===== produtos no celular: lista compacta, todos visíveis antes do botão ===== */
+@media(max-width:699px){
+  .prods{display:grid;grid-template-columns:1fr;gap:14px;overflow:visible;padding:0;margin:0;scroll-snap-type:none}
+  .prod{width:auto;flex-direction:row;align-items:stretch;border-radius:20px}
+  .prod .im{width:96px;height:96px;flex:none;aspect-ratio:1/1;align-self:center;margin-left:14px;border-radius:14px}
+  .prod .bd{padding:14px;gap:6px}
+  .prod h3{font-size:16px;line-height:1.25}
+  .prod p{font-size:12.5px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;flex:none}
+  .prod .acts{margin-top:4px;gap:8px}
+  .prod .btn-sm{padding:8px 12px;font-size:12px;border-radius:10px}
+}
+@media(min-width:700px) and (max-width:999px){
+  .prods{display:grid;grid-template-columns:repeat(2,1fr);overflow:visible;padding:0;margin:0;scroll-snap-type:none}
+  .prod{width:auto}
+}
